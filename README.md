@@ -1,6 +1,8 @@
 # dogiscute
 
 
+
+
 ## example
 
 ```sh
@@ -32,7 +34,17 @@ func main() {
 ```
 
 
-## to cloud example
+## to cloud 
+
+
+### env
+```sh
+$ export GCLOUD_PROJDCT_ID={gcloud project id}
+$ export GOOGLE_APPLICATION_CREDENTIALS={credentials path}
+$ export LOG_TITLE={log title}
+```
+
+### example
 
 ```sh
 
