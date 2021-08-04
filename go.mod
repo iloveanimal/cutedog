@@ -1,4 +1,4 @@
-module github.com/iloveanimal/dogiscute
+module github.com/iloveanimal/cutedog
 
 go 1.16
 
