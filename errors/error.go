@@ -3,6 +3,7 @@ package errorHandle
 import (
 	"fmt"
 	"runtime"
+	"runtime/debug"
 )
 
 type GeneralErrorInter interface {
@@ -16,21 +17,13 @@ type GeneralError struct {
 }
 
 func runFuncName() string {
-	res := ""
-	pc := make([]uintptr, 10)
-	runtime.Callers(2, pc)
-	for _, p := range pc {
-		f := runtime.FuncForPC(p)
-		if f.Name() != "" {
-			res += fmt.Sprintf("|%v", f.Name())
-		}
-	}
-	return res
+	s := string(debug.Stack())
+	return s
 }
 
 func GetGeneralError(message string) GeneralError {
 	_, file, line, _ := runtime.Caller(1)
-	location := fmt.Sprintf("FuncStack: %s FuncLoc: %s Line: %v", runFuncName(), file, line)
+	location := fmt.Sprintf("FuncStack: %s TrigerLoc: %s Line: %v", runFuncName(), file, line)
 	return GeneralError{
 		location: location,
 		message:  message,
