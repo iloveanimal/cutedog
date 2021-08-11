@@ -30,7 +30,7 @@ func runFuncName() string {
 
 func GetGeneralError(message string) GeneralError {
 	_, file, line, _ := runtime.Caller(1)
-	location := fmt.Sprintf("FuncName: %s FuncLoc: %s Line: %v", runFuncName(), file, line)
+	location := fmt.Sprintf("FuncStack: %s FuncLoc: %s Line: %v", runFuncName(), file, line)
 	return GeneralError{
 		location: location,
 		message:  message,
