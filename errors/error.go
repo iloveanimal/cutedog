@@ -16,10 +16,16 @@ type GeneralError struct {
 }
 
 func runFuncName() string {
-	pc := make([]uintptr, 1)
-	runtime.Callers(3, pc)
-	f := runtime.FuncForPC(pc[0])
-	return f.Name()
+	res := ""
+	pc := make([]uintptr, 10)
+	runtime.Callers(2, pc)
+	for _, p := range pc {
+		f := runtime.FuncForPC(p)
+		if f.Name() != "" {
+			res += fmt.Sprintf("|%v", f.Name())
+		}
+	}
+	return res
 }
 
 func GetGeneralError(message string) GeneralError {
