@@ -17,7 +17,7 @@ func ErrToLog() {
 		PushChan: logChan,
 	}
 	for {
-		err := dogErr.GetGeneralError("someWhere", "test Error")
+		err := dogErr.GetGeneralError("test Error")
 		eh.Handle(err)
 		time.Sleep(time.Second)
 	}

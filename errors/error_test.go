@@ -5,7 +5,6 @@ import (
 	"testing"
 
 	logwrapper "github.com/iloveanimal/cutedog/log"
-
 	"github.com/stretchr/testify/require"
 )
 
@@ -15,7 +14,7 @@ func TestErrorHandle(t *testing.T) {
 	eh := ErrorHandler{
 		PushChan: c,
 	}
-	err := GetGeneralError("Path", "SomeError")
+	err := GetGeneralError("SomeError")
 	go func() {
 
 		eh.Handle(err)
@@ -26,7 +25,6 @@ func TestErrorHandle(t *testing.T) {
 	log.Println(l)
 
 	require.Equal(t, err.Error(), l.Message)
-	require.Equal(t, err.Location(), l.EventLocation)
 	require.Equal(t, logwrapper.Error, l.Level)
 
 }

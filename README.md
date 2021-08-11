@@ -26,7 +26,7 @@ func main() {
 		PushChan: logChan,
 	}
 	for {
-		err := dogErr.GetGeneralError("someWhere", "test Error")
+		err := dogErr.GetGeneralError("some error")
 		eh.Handle(err)
 		time.Sleep(time.Second)
 	}
@@ -67,7 +67,7 @@ func main() {
 		PushChan: logChan,
 	}
 	for {
-		err := dogErr.GetGeneralError("someWhere", "test Error")
+		err := dogErr.GetGeneralError("some error")
 		eh.Handle(err)
 		time.Sleep(time.Second)
 	}
