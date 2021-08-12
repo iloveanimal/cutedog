@@ -28,3 +28,23 @@ func TestErrorHandle(t *testing.T) {
 	require.Equal(t, logwrapper.Error, l.Level)
 
 }
+
+func TestInfoHandle(t *testing.T) {
+	c := make(chan logwrapper.LogData)
+
+	eh := ErrorHandler{
+		PushChan: c,
+	}
+	info := GetGeneralInfo("SomeInfo")
+	go func() {
+		eh.HandleInfo(info)
+	}()
+
+	l := <-c
+
+	log.Println(l)
+
+	require.Equal(t, info.msg, l.Message)
+	require.Equal(t, info.location, l.EventLocation)
+	require.Equal(t, logwrapper.Info, l.Level)
+}
