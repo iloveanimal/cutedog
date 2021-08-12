@@ -27,7 +27,7 @@ func LogEngine(logChannel chan LogData) {
 func LogGCloudEngine(logChannel chan LogData) {
 	l := NewLogger()
 	ctx := context.Background()
-	projectID := os.Getenv("GCLOUD_PROJDCT_ID")
+	projectID := os.Getenv("GCLOUD_PROJECT_ID")
 	client, err := logging.NewClient(ctx, projectID)
 	if err != nil {
 		log.Fatalf("Failed to create client: %v", err)
