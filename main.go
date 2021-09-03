@@ -13,11 +13,11 @@ func main() {
 	eh := dogError.ErrorHandler{
 		PushChan: c,
 	}
-	info := dogError.GetGeneralInfo("SomeInfo")
+	info := dogError.GetGeneralWarring("SomeInfo")
 
 	go logwrapper.LogEngine(c)
 
-	eh.HandleInfo(info)
+	eh.HandleV2(info)
 
 	time.Sleep(time.Second * 3)
 }

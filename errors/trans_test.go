@@ -7,13 +7,25 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-func TestTransInfoToLog(t *testing.T) {
+func TestTransToLog(t *testing.T) {
+	err := GetGeneralError("error")
+	l1 := transToLog(err)
+
+	should_l1 := logwrapper.GetLogData(
+		err.Location(),
+		err.Error(),
+		logwrapper.Error,
+	)
+	require.Equal(t, should_l1, l1)
+}
+
+func TestTransInfoToLogV2(t *testing.T) {
 	info := GetGeneralInfo("someInfo")
-	l1 := transInfoToLog(info)
+	l1 := transToLogV2(info)
 
 	should_l1 := logwrapper.GetLogData(
 		info.Location(),
-		info.Info(),
+		info.Error(),
 		logwrapper.Info,
 	)
 	require.Equal(t, should_l1, l1)

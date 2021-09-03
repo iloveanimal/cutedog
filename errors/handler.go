@@ -11,7 +11,7 @@ func (h ErrorHandler) Handle(err error) {
 	h.PushChan <- l
 }
 
-func (h ErrorHandler) HandleInfo(info InfoInter) {
-	l := transInfoToLog(info)
+func (h ErrorHandler) HandleV2(ge GeneralErrorInterV2) {
+	l := transToLogV2(ge)
 	h.PushChan <- l
 }

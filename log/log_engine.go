@@ -13,6 +13,7 @@ func LogEngine(logChannel chan LogData) {
 	l := NewLogger()
 	for {
 		logData := <-logChannel
+
 		switch logData.Level {
 		case Info:
 			l.logInfo(logData)
