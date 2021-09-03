@@ -7,6 +7,21 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
+func TestErrorNilHandle(t *testing.T) {
+	c := make(chan logwrapper.LogData)
+
+	eh := ErrorHandler{
+		PushChan: c,
+	}
+	go func() {
+		eh.HandleV2(nil)
+	}()
+
+	l := <-c
+	require.Equal(t, "nil error", l.Message)
+	require.Equal(t, logwrapper.Error, l.Level)
+}
+
 func TestErrorHandle(t *testing.T) {
 	c := make(chan logwrapper.LogData)
 
