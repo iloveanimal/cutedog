@@ -46,10 +46,8 @@ func LogGCloudEngine(logChannel chan LogData) {
 		logData := <-logChannel
 		switch logData.Level {
 		case Info:
-			l.logInfo(logData)
 			logger.Log(logging.Entry{Payload: fmt.Sprintf("Info message: %s.\nInfo location: %s.", logData.Message, logData.EventLocation), Severity: logging.Info})
 		case Warning:
-			l.logWarn(logData)
 			logger.Log(logging.Entry{Payload: logData.Message, Severity: logging.Warning})
 		case Error:
 			l.logError(logData)
